@@ -1,6 +1,31 @@
+table {
+	border: 1px solid #A7C942;
+	margin: 20px auto;
+}
+th {
+	font-size: 14px;
+	font-weight: bold;
+	background: #98bf21;
+	border-top: 1px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #000000;
+	padding: 6px;
+  }
+td {
+	background: #EAF2D3;
+	border-bottom: 1px solid #fff;
+	color: #000000;
+	border-top: 1px solid transparent;
+	padding: 6px;
+}
+tr:hover td {
+	background: #A7C942;
+}
+
 th.sorted[data-order="-1"]::after {
 	content: "▼"
 }
 
 th.sorted[data-order="1"]::after {
 	content: "▲"
+}

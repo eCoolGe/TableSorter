@@ -1,41 +1,101 @@
-btn1.onclick = function () {
-	sort(this, 0);
-}
+const tableOne = new tableEditor().init({
+	'root': '#table-storage',
+	'headers': [
+		{
+			'name': '№'
+		},
+		{
+			'key': 'name',
+			'name': 'Название предмета'
+		},
+		{
+			'key': 'count',
+			'name': 'Групп сдает',
+			'sortable': false
+		},
+		{
+			'key': 'date',
+			'name': 'Дата экзамена',
+		}
+	]
+});
 
-btn2.onclick = function () {
-	sort(this, 1);
-}
-
-btn3.onclick = function () {
-	sort(this, 2);
-}
-
-const sort = function (btn, row) {
-	let sortedRows;
-	let sorted = Boolean(btn.innerHTML.indexOf("▲")+1);
-	if (!sorted) {
-		sortedRows = Array.from(tbl1.tBodies[0].rows).sort(function (a, b) {
-			if (isNaN(parseInt(a.cells[row].innerHTML)))
-				return a.cells[row].innerHTML > b.cells[row].innerHTML ? 1 : -1;
-			else 
-				return a.cells[row].innerHTML - b.cells[row].innerHTML;
-		});
-	} else {
-		sortedRows = Array.from(tbl1.tBodies[0].rows).sort(function (b, a) {
-		if (isNaN(parseInt(a.cells[row].innerHTML)))
-			return a.cells[row].innerHTML > b.cells[row].innerHTML ? 1 : -1;
-		else 
-			return a.cells[row].innerHTML - b.cells[row].innerHTML;
-		});
+tableOne.createRows([
+	{
+		'name': 'Математика',
+		'count': '11',
+		'date': '12.11.2020'
+	},
+	{
+		'name': 'Экология',
+		'count': '4',
+		'date': '24.12.2020'
+	},
+	{
+		'name': 'Биология',
+		'count': '3',
+		'date': '13.10.2020'
+	},
+	{
+		'name': 'Химия',
+		'count': '3',
+		'date': '13.10.2020'
+	},
+	{
+		'name': 'Физика',
+		'count': '9',
+		'date': '16.05.2021'
+	},
+	{
+		'name': 'Базы данных',
+		'count': '4',
+		'date': '01.12.2020'
 	}
-	tbl1.tBodies[0].append(...sortedRows);
+]);
 
-	btn1.innerHTML = "№";
-	btn2.innerHTML = "Название";
-	btn3.innerHTML = "Цена";
+const tableTwo = new tableEditor().init({
+	'root': '#table-storage',
+	'headers': [
+		{
+			'key': 'number',
+			'name': '№'
+		},
+		{
+			'key': 'name',
+			'name': 'Название напитка',
+			'sortable': false
+		},
+		{
+			'key': 'fortress',
+			'name': 'Крепость'
+			
+		}
+	]
+});
 
-	if (!sorted)
-		btn.innerHTML += " " + "▲";
-	else
-		btn.innerHTML += " " + "▼";
-}
+tableTwo.createRows([
+	{
+		'number': '2',
+		'name' : 'Пиво',
+		'fortress': '3-8%'
+	},
+	{
+		'number': '8',
+		'name' : 'Квас',
+		'fortress': '0,3-2,6%'
+	},
+	{
+		'number': '4',
+		'name' : 'Спирт',
+		'fortress': '95%'
+	},
+	{
+		'number': '6',
+		'name' : 'Водка',
+		'fortress': '36-60%'
+	}
+]);
+
+document.addEventListener('DOMContentLoaded', () => {
+	new tableEditor().editTable('.sortable')
+}); 
